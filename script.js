@@ -26,12 +26,18 @@ async function sendMessage() {
 
             body: JSON.stringify({
                 prompt: `You are Quinela, a helpful AI assistant.
+Answer only the user's current question.
+Give a short, direct and clear answer.
+Do not continue or create a conversation.
+Do not write "User:" or "Quinela:".
+Do not repeat the question.
+Do not invent dialogue.
 
-User: ${question}
+${question}
 
 Quinela:`,
 
-                n_predict: 50,
+                n_predict: 60,
                 temperature: 0.3,
                 repeat_penalty: 1.2
             })
