@@ -1,63 +1,63 @@
-async function sendMessage(){
+const API_URL = "https://interesting-newly-joan-forests.trycloudflare.com";
 
-let box = document.getElementById("message");
-let chat = document.getElementById("chat");
+async function sendMessage() {
 
-let question = box.value.trim();
+    const input = document.getElementById("message");
+    const chat = document.getElementById("chat");
 
-if(!question) return;
+    const question = input.value.trim();
 
+    if (!question) return;
 
-chat.innerHTML += `
-<div class="user">${question}</div>
-`;
+    chat.innerHTML += `
+        <div class="user">${question}</div>
+    `;
 
-box.value="";
+    input.value = "";
 
+    try {
 
-let response = await fetch(
-"https://tvs-hair-commit-kai.trycloudflare.com",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
+        const response = await fetch(`${API_URL}/completion`, {
+            method: "POST",
 
-body:JSON.stringify({
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-prompt:
-`<|system|>
-You are Quinela, a helpful AI assistant.
-Give short, clear answers.
-Do not repeat words.
-Do not introduce yourself unless asked.
-Keep answers under 50 words.
-</s>
+            body: JSON.stringify({
+                prompt: `You are Quinela, a helpful AI assistant.
 
-<|user|>
-${question}
-</s>
+User: ${question}
 
-<|assistant|>`,
+Quinela:`,
 
-n_predict:60,
+                n_predict: 50,
+                temperature: 0.3,
+                repeat_penalty: 1.2
+            })
+        });
 
-temperature:0.3,
+        const data = await response.json();
 
-repeat_penalty:1.2
+        console.log(data);
 
-})
+        // llama.cpp normally returns the answer here
+        const answer = data.content;
 
-});
+        chat.innerHTML += `
+            <div class="ai">${answer || "I couldn't generate a response."}</div>
+        `;
 
+        chat.scrollTop = chat.scrollHeight;
 
-let data = await response.json();
+    } catch (error) {
 
+        console.error(error);
 
-chat.innerHTML += `
-<div class="ai">${data.content}</div>
-`;
-
-chat.scrollTop = chat.scrollHeight;
-
+        chat.innerHTML += `
+            <div class="ai">
+                Connection error. Quinela couldn't reach her AI.
+            </div>
+        `;
+    }
 }
