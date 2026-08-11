@@ -1,5 +1,5 @@
 ```javascript
-const API_URL = "https://odds-thomas-programming-owns.trycloudflare.com";
+const API_URL = "https://recipes-gateway-precipitation-conduct.trycloudflare.com";
 
 async function sendMessage() {
 
