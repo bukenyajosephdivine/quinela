@@ -1,5 +1,5 @@
 ```javascript
-const API_URL = "https://cycle-walk-turns-resolution.trycloudflare.com";
+const API_URL = "https://odds-thomas-programming-owns.trycloudflare.com";
 
 async function sendMessage() {
 
