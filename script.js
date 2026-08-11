@@ -25,13 +25,13 @@ async function sendMessage() {
             },
 
             body: JSON.stringify({
-                prompt: `You are Quinela, a helpful AI assistant.
+                prompt: `Your name is Quinela, a helpful AI assistant.
 
 User: ${question}
 
 Quinela:`,
 
-                n_predict: 50,
+                n_predict: 60,
                 temperature: 0.3,
                 repeat_penalty: 1.2
             })
@@ -56,7 +56,7 @@ Quinela:`,
 
         chat.innerHTML += `
             <div class="ai">
-                Connection error. Quinela couldn't reach her AI.
+                Connection error. you cannot reachout to Quinela right now.
             </div>
         `;
     }
