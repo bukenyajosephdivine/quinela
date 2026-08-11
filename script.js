@@ -16,7 +16,7 @@ box.value="";
 
 
 let response = await fetch(
-"https://ict-baghdad-undefined-neither.trycloudflare.com",
+"https://finger-isp-appointments-allergy.trycloudflare.com",
 {
 method:"POST",
 headers:{
