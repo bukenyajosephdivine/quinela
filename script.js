@@ -16,7 +16,7 @@ box.value="";
 
 
 let response = await fetch(
-"https://finger-isp-appointments-allergy.trycloudflare.com",
+"https://trend-engaging-considerations-have.trycloudflare.com",
 {
 method:"POST",
 headers:{
