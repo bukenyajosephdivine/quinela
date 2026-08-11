@@ -1,3 +1,4 @@
+```javascript
 const API_URL = "https://grants-suppose-copy-tennis.trycloudflare.com";
 
 async function sendMessage() {
@@ -26,38 +27,45 @@ async function sendMessage() {
 
             body: JSON.stringify({
                 prompt: `Your name is Quinela, a helpful AI assistant.
+Answer only the user's current question.
+Give a short, direct and clear answer.
+Do not continue or create a conversation.
+Do not write "User:" or "Quinela:".
+Do not repeat the question.
+Do not invent dialogue.
 
-User: ${question}
+${question}
 
-Quinela:`,
+Answer:`,
 
-                n_predict: 60,
-                temperature: 0.3,
-                repeat_penalty: 1.2
-            })
-        });
+            n_predict: 60,
+            temperature: 0.3,
+            repeat_penalty: 1.2
+        })
+    });
 
-        const data = await response.json();
+    const data = await response.json();
 
-        console.log(data);
+    console.log(data);
 
-        // llama.cpp normally returns the answer here
-        const answer = data.content;
+    // llama.cpp normally returns the answer here
+    const answer = data.content;
 
-        chat.innerHTML += `
-            <div class="ai">${answer || "I couldn't generate a response."}</div>
-        `;
+    chat.innerHTML += `
+        <div class="ai">${answer || "I couldn't generate a response."}</div>
+    `;
 
-        chat.scrollTop = chat.scrollHeight;
+    chat.scrollTop = chat.scrollHeight;
 
-    } catch (error) {
+} catch (error) {
 
-        console.error(error);
+    console.error(error);
 
-        chat.innerHTML += `
-            <div class="ai">
-                Connection error. you cannot reachout to Quinela right now.
-            </div>
-        `;
-    }
+    chat.innerHTML += `
+        <div class="ai">
+            Connection error. you cannot reachout to Quinela right now.
+        </div>
+    `;
 }
+}
+```
