@@ -16,7 +16,7 @@ box.value="";
 
 
 let response = await fetch(
-"https://contribute-sponsors-leaf-helen.trycloudflare.com/completion",
+"https://speaker-smart-tunnel-connectivity.trycloudflare.com",
 {
 method:"POST",
 headers:{
