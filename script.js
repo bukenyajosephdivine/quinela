@@ -1,4 +1,4 @@
-const API_URL = "https://grateful-fiscal-advisors-metadata.trycloudflare.com";
+const API_URL = "https://raw-product-answer-alarm.trycloudflare.com";
 
 async function sendMessage() {
 
