@@ -1,4 +1,4 @@
-const API_URL = "https://settle-surplus-becomes-fingers.trycloudflare.com";
+const API_URL = "https://resulted-locked-independent-scout.trycloudflare.com";
 
 async function sendMessage() {
 
