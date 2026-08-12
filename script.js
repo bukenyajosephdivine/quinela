@@ -1,4 +1,4 @@
-const API_URL = "https://recipes-gateway-precipitation-conduct.trycloudflare.com";
+const API_URL = "https://dow-bunny-stay-eliminate.trycloudflare.com";
 
 async function sendMessage() {
 
