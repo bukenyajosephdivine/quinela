@@ -1,4 +1,4 @@
-const API_URL = "https://raw-product-answer-alarm.trycloudflare.com";
+const API_URL = "https://bulk-origin-topics-powered.trycloudflare.com";
 
 async function sendMessage() {
 
