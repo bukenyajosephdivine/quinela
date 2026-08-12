@@ -1,4 +1,3 @@
-```javascript
 const API_URL = "https://editor-multiple-football-moderate.trycloudflare.com";
 
 async function sendMessage() {
@@ -28,15 +27,9 @@ async function sendMessage() {
             body: JSON.stringify({
                 prompt: `You are Quinela, a helpful AI assistant.
 
-Answer the following question directly and briefly.
-Do not create a conversation.
-Do not write User:.
-Do not write Quinela:.
-Do not repeat the question.
+User: ${question}
 
-Question: ${question}
-
-Answer:`,
+Quinela:`,
 
                 n_predict: 50,
                 temperature: 0.3,
@@ -68,4 +61,3 @@ Answer:`,
         `;
     }
 }
-```
