@@ -1,4 +1,4 @@
-const API_URL = "https://movements-refined-api-although.trycloudflare.com";
+const API_URL = "https://standards-gps-everybody-accidents.trycloudflare.com";
 
 async function sendMessage() {
 
