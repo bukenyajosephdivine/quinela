@@ -1,5 +1,5 @@
 ```javascript
-const API_URL = "https://mariah-yields-bookmark-electoral.trycloudflare.com";
+const API_URL = "https://rest-greatest-lawn-prep.trycloudflare.com";
 
 async function sendMessage() {
 
@@ -26,46 +26,55 @@ async function sendMessage() {
             },
 
             body: JSON.stringify({
-                prompt: `Your name is Quinela, a helpful AI assistant.
-Answer only the user's current question.
-Give a short, direct and clear answer.
-Do not continue or create a conversation.
-Do not write "User:" or "Quinela:".
-Do not repeat the question.
-Do not invent dialogue.
 
+                prompt: `You are Quinela, a helpful and intelligent AI assistant.
+
+Answer ONLY the user's current question.
+
+Rules:
+- Give a short, direct answer.
+- Use 1 to 4 sentences.
+- Do not continue a previous conversation.
+- Do not write "User:".
+- Do not write "Quinela:".
+- Do not create imaginary dialogue.
+- Do not repeat the question.
+- Do not add unrelated information.
+
+Question:
 ${question}
 
 Answer:`,
 
-            n_predict: 60,
-            temperature: 0.3,
-            repeat_penalty: 1.2
-        })
-    });
+                n_predict: 80,
+                temperature: 0.2,
+                repeat_penalty: 1.2,
+                stop: ["User:", "Quinela:"]
 
-    const data = await response.json();
+            })
+        });
 
-    console.log(data);
+        const data = await response.json();
 
-    // llama.cpp normally returns the answer here
-    const answer = data.content;
+        console.log(data);
 
-    chat.innerHTML += `
-        <div class="ai">${answer || "I couldn't generate a response."}</div>
-    `;
+        const answer = data.content;
 
-    chat.scrollTop = chat.scrollHeight;
+        chat.innerHTML += `
+            <div class="ai">${answer || "I couldn't generate a response."}</div>
+        `;
 
-} catch (error) {
+        chat.scrollTop = chat.scrollHeight;
 
-    console.error(error);
+    } catch (error) {
 
-    chat.innerHTML += `
-        <div class="ai">
-            Connection error. you cannot reachout to Quinela right now.
-        </div>
-    `;
-}
+        console.error(error);
+
+        chat.innerHTML += `
+            <div class="ai">
+                Connection error. Quinela couldn't reach her AI.
+            </div>
+        `;
+    }
 }
 ```
