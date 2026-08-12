@@ -1,4 +1,4 @@
-const API_URL = "https://upcoming-clearly-anyway-dns.trycloudflare.com";
+const API_URL = "https://flexible-refinance-ward-depends.trycloudflare.com";
 
 async function sendMessage() {
 
