@@ -1,4 +1,4 @@
-const API_URL = "https://designer-directed-merge-fifteen.trycloudflare.com";
+const API_URL = "https://wing-town-experimental-brake.trycloudflare.com";
 
 async function sendMessage() {
 
