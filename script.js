@@ -1,4 +1,4 @@
-const API_URL = "https://editor-multiple-football-moderate.trycloudflare.com";
+const API_URL = "https://brief-wellness-options-harrison.trycloudflare.com";
 
 async function sendMessage() {
 
