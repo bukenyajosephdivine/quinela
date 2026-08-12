@@ -1,5 +1,5 @@
 ```javascript
-const API_URL = "https://shelf-newly-terms-lamp.trycloudflare.com";
+const API_URL = "https://editor-multiple-football-moderate.trycloudflare.com";
 
 async function sendMessage() {
 
