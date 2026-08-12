@@ -1,5 +1,5 @@
 ```javascript
-const API_URL = "https://holders-sheriff-fresh-although.trycloudflare.com";
+const API_URL = "https://mariah-yields-bookmark-electoral.trycloudflare.com";
 
 async function sendMessage() {
 
