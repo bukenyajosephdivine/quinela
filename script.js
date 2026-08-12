@@ -1,23 +1,14 @@
-```javascript
-const API_URL = "https://rest-greatest-lawn-prep.trycloudflare.com";
+const API_URL = "https://clear-affiliated-jump-census.trycloudflare.com";
 
 async function sendMessage() {
 
     const input = document.getElementById("message");
     const chat = document.getElementById("chat");
 
-    if (!input || !chat) {
-        console.error("Message input or chat element was not found.");
-        return;
-    }
-
     const question = input.value.trim();
 
-    if (question === "") {
-        return;
-    }
+    if (!question) return;
 
-    // Show user message
     chat.innerHTML += `
         <div class="user">${question}</div>
     `;
@@ -28,7 +19,7 @@ async function sendMessage() {
 
     try {
 
-        const response = await fetch(API_URL + "/completion", {
+        const response = await fetch(`${API_URL}/completion`, {
             method: "POST",
 
             headers: {
@@ -36,9 +27,7 @@ async function sendMessage() {
             },
 
             body: JSON.stringify({
-
-                prompt:
-`You are Quinela, a helpful AI assistant.
+                prompt: `You are Quinela, a helpful AI assistant.
 
 Answer the user's question directly.
 
@@ -48,14 +37,14 @@ Do not write User:.
 Do not write Quinela:.
 Do not repeat the question.
 
-Question: ${question}
+Question:
+${question}
 
 Answer:`,
 
                 n_predict: 60,
                 temperature: 0.3,
                 repeat_penalty: 1.2
-
             })
         });
 
@@ -65,39 +54,29 @@ Answer:`,
 
         const data = await response.json();
 
-        console.log("AI response:", data);
+        console.log("Quinela:", data);
 
         let answer = data.content;
 
-        if (typeof answer !== "string" || answer.trim() === "") {
-            throw new Error("No answer received from the AI.");
+        if (!answer) {
+            throw new Error("No answer received.");
         }
 
         answer = answer.trim();
 
-        // Remove unwanted conversation labels
         answer = answer.replace(/^Quinela:\s*/i, "");
         answer = answer.replace(/^User:\s*/i, "");
 
-        // Stop anything after a new fake conversation
-        const userIndex = answer.indexOf("User:");
-        const quinelaIndex = answer.indexOf("Quinela:");
-
-        if (userIndex !== -1) {
-            answer = answer.substring(0, userIndex);
+        if (answer.includes("User:")) {
+            answer = answer.split("User:")[0];
         }
 
-        if (quinelaIndex !== -1) {
-            answer = answer.substring(0, quinelaIndex);
+        if (answer.includes("Quinela:")) {
+            answer = answer.split("Quinela:")[0];
         }
 
         answer = answer.trim();
 
-        if (answer === "") {
-            answer = "I couldn't generate a response.";
-        }
-
-        // Display AI answer
         chat.innerHTML += `
             <div class="ai">${answer}</div>
         `;
@@ -117,4 +96,3 @@ Answer:`,
         chat.scrollTop = chat.scrollHeight;
     }
 }
-```
