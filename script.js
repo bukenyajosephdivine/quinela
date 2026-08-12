@@ -1,4 +1,4 @@
-const API_URL = "https://resulted-locked-independent-scout.trycloudflare.com";
+const API_URL = "https://grateful-fiscal-advisors-metadata.trycloudflare.com";
 
 async function sendMessage() {
 
