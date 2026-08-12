@@ -1,4 +1,4 @@
-const API_URL = "https://appears-defense-fifteen-carries.trycloudflare.com";
+const API_URL = "https://translate-multiple-game-ant.trycloudflare.com";
 
 async function sendMessage() {
 
