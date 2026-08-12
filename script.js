@@ -1,4 +1,5 @@
-const API_URL = "https://clear-affiliated-jump-census.trycloudflare.com";
+```javascript
+const API_URL = "https://shelf-newly-terms-lamp.trycloudflare.com";
 
 async function sendMessage() {
 
@@ -15,8 +16,6 @@ async function sendMessage() {
 
     input.value = "";
 
-    chat.scrollTop = chat.scrollHeight;
-
     try {
 
         const response = await fetch(`${API_URL}/completion`, {
@@ -29,70 +28,44 @@ async function sendMessage() {
             body: JSON.stringify({
                 prompt: `You are Quinela, a helpful AI assistant.
 
-Answer the user's question directly.
-
-Keep your answer short and clear.
+Answer the following question directly and briefly.
 Do not create a conversation.
 Do not write User:.
 Do not write Quinela:.
 Do not repeat the question.
 
-Question:
-${question}
+Question: ${question}
 
 Answer:`,
 
-                n_predict: 60,
+                n_predict: 50,
                 temperature: 0.3,
                 repeat_penalty: 1.2
             })
         });
 
-        if (!response.ok) {
-            throw new Error("Server error: " + response.status);
-        }
-
         const data = await response.json();
 
-        console.log("Quinela:", data);
+        console.log(data);
 
-        let answer = data.content;
-
-        if (!answer) {
-            throw new Error("No answer received.");
-        }
-
-        answer = answer.trim();
-
-        answer = answer.replace(/^Quinela:\s*/i, "");
-        answer = answer.replace(/^User:\s*/i, "");
-
-        if (answer.includes("User:")) {
-            answer = answer.split("User:")[0];
-        }
-
-        if (answer.includes("Quinela:")) {
-            answer = answer.split("Quinela:")[0];
-        }
-
-        answer = answer.trim();
+        // llama.cpp normally returns the answer here
+        const answer = data.content;
 
         chat.innerHTML += `
-            <div class="ai">${answer}</div>
+            <div class="ai">${answer || "I couldn't generate a response."}</div>
         `;
 
         chat.scrollTop = chat.scrollHeight;
 
     } catch (error) {
 
-        console.error("Quinela error:", error);
+        console.error(error);
 
         chat.innerHTML += `
             <div class="ai">
-                Quinela is currently unavailable. Please try again.
+                Connection error. Quinela couldn't reach her AI.
             </div>
         `;
-
-        chat.scrollTop = chat.scrollHeight;
     }
 }
+```
