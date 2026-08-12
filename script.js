@@ -1,4 +1,4 @@
-const API_URL = "https://mathematical-restrictions-organizational-spending.trycloudflare.com";
+const API_URL = "https://designer-directed-merge-fifteen.trycloudflare.com";
 
 async function sendMessage() {
 
