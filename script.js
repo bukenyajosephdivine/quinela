@@ -1,4 +1,4 @@
-const API_URL = "https://bulk-origin-topics-powered.trycloudflare.com";
+const API_URL = "https://appears-defense-fifteen-carries.trycloudflare.com";
 
 async function sendMessage() {
 
