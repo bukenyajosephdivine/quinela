@@ -29,7 +29,7 @@ async function sendMessage() {
 Answer only the user's current question.
 Give a short, direct and clear answer.
 Do not continue or create a conversation.
-Do not write "User:" or "Quinela:".
+Do not write "User:".
 Do not repeat the question.
 Do not invent dialogue.
 
