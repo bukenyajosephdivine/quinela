@@ -1,4 +1,4 @@
-const API_URL = "https://flexible-refinance-ward-depends.trycloudflare.com";
+const API_URL = "https://movements-refined-api-although.trycloudflare.com";
 
 async function sendMessage() {
 
