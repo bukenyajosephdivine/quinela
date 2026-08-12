@@ -6,19 +6,29 @@ async function sendMessage() {
     const input = document.getElementById("message");
     const chat = document.getElementById("chat");
 
+    if (!input || !chat) {
+        console.error("Message input or chat element was not found.");
+        return;
+    }
+
     const question = input.value.trim();
 
-    if (!question) return;
+    if (question === "") {
+        return;
+    }
 
+    // Show user message
     chat.innerHTML += `
         <div class="user">${question}</div>
     `;
 
     input.value = "";
 
+    chat.scrollTop = chat.scrollHeight;
+
     try {
 
-        const response = await fetch(`${API_URL}/completion`, {
+        const response = await fetch(API_URL + "/completion", {
             method: "POST",
 
             headers: {
@@ -27,54 +37,84 @@ async function sendMessage() {
 
             body: JSON.stringify({
 
-                prompt: `You are Quinela, a helpful and intelligent AI assistant.
+                prompt:
+`You are Quinela, a helpful AI assistant.
 
-Answer ONLY the user's current question.
+Answer the user's question directly.
 
-Rules:
-- Give a short, direct answer.
-- Use 1 to 4 sentences.
-- Do not continue a previous conversation.
-- Do not write "User:".
-- Do not write "Quinela:".
-- Do not create imaginary dialogue.
-- Do not repeat the question.
-- Do not add unrelated information.
+Keep your answer short and clear.
+Do not create a conversation.
+Do not write User:.
+Do not write Quinela:.
+Do not repeat the question.
 
-Question:
-${question}
+Question: ${question}
 
 Answer:`,
 
-                n_predict: 80,
-                temperature: 0.2,
-                repeat_penalty: 1.2,
-                stop: ["User:", "Quinela:"]
+                n_predict: 60,
+                temperature: 0.3,
+                repeat_penalty: 1.2
 
             })
         });
 
+        if (!response.ok) {
+            throw new Error("Server error: " + response.status);
+        }
+
         const data = await response.json();
 
-        console.log(data);
+        console.log("AI response:", data);
 
-        const answer = data.content;
+        let answer = data.content;
 
+        if (typeof answer !== "string" || answer.trim() === "") {
+            throw new Error("No answer received from the AI.");
+        }
+
+        answer = answer.trim();
+
+        // Remove unwanted conversation labels
+        answer = answer.replace(/^Quinela:\s*/i, "");
+        answer = answer.replace(/^User:\s*/i, "");
+
+        // Stop anything after a new fake conversation
+        const userIndex = answer.indexOf("User:");
+        const quinelaIndex = answer.indexOf("Quinela:");
+
+        if (userIndex !== -1) {
+            answer = answer.substring(0, userIndex);
+        }
+
+        if (quinelaIndex !== -1) {
+            answer = answer.substring(0, quinelaIndex);
+        }
+
+        answer = answer.trim();
+
+        if (answer === "") {
+            answer = "I couldn't generate a response.";
+        }
+
+        // Display AI answer
         chat.innerHTML += `
-            <div class="ai">${answer || "I couldn't generate a response."}</div>
+            <div class="ai">${answer}</div>
         `;
 
         chat.scrollTop = chat.scrollHeight;
 
     } catch (error) {
 
-        console.error(error);
+        console.error("Quinela error:", error);
 
         chat.innerHTML += `
             <div class="ai">
-                Connection error. Quinela couldn't reach her AI.
+                Quinela is currently unavailable. Please try again.
             </div>
         `;
+
+        chat.scrollTop = chat.scrollHeight;
     }
 }
 ```
