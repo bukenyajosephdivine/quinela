@@ -1,4 +1,4 @@
-const API_URL = "https://wing-town-experimental-brake.trycloudflare.com";
+const API_URL = "https://upcoming-clearly-anyway-dns.trycloudflare.com";
 
 async function sendMessage() {
 
