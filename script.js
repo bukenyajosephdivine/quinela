@@ -1,4 +1,4 @@
-const API_URL = "https://translate-multiple-game-ant.trycloudflare.com";
+const API_URL = "https://granny-longitude-job-kills.trycloudflare.com";
 
 async function sendMessage() {
 
