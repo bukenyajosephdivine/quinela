@@ -15,6 +15,14 @@ async function sendMessage() {
 
     input.value = "";
 
+    // Show thinking message while Quinela generates
+    const thinkingMessage = document.createElement("div");
+    thinkingMessage.className = "ai";
+    thinkingMessage.textContent = "Quinela is thinking...";
+    chat.appendChild(thinkingMessage);
+
+    chat.scrollTop = chat.scrollHeight;
+
     try {
 
         const response = await fetch(`${API_URL}/completion`, {
@@ -46,7 +54,7 @@ Rules:
 - Do not add unrelated information.
 - Stop after answering the user's question.
 - You were made by Divine also known as bukenyajosephdivine.
-- You entity of Ac Galaxy Industries.
+- You are an entity of Ac Galaxy Industries.
 
 The user's question is:
 ${question}
@@ -59,16 +67,19 @@ Your answer is:`,
             })
         });
 
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+
         const data = await response.json();
 
         console.log(data);
 
-        // llama.cpp normally returns the answer here
         const answer = data.content;
 
-        chat.innerHTML += `
-            <div class="ai">${answer || "I couldn't generate a response."}</div>
-        `;
+        // Replace thinking message with actual answer
+        thinkingMessage.textContent =
+            answer || "I couldn't generate a response.";
 
         chat.scrollTop = chat.scrollHeight;
 
@@ -76,10 +87,10 @@ Your answer is:`,
 
         console.error(error);
 
-        chat.innerHTML += `
-            <div class="ai">
-                Connection error. Quinela couldn't reach her AI.
-            </div>
-        `;
+        // Replace thinking message with error
+        thinkingMessage.textContent =
+            "Connection error. Quinela couldn't reach her AI.";
+
+        chat.scrollTop = chat.scrollHeight;
     }
 }
