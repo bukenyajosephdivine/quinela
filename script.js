@@ -1,4 +1,4 @@
-const API_URL = "https://mathematical-restrictions-organizational-spending.trycloudflare.com";
+const API_URL = "https://prix-drag-temp-terminal.trycloudflare.com";
 
 async function sendMessage() {
 
