@@ -32,7 +32,7 @@ You must answer ONLY the question written below.
 
 Rules:
 - Give one direct answer to the question.
-- Keep the answer short and clear.
+- Give appropriate amount of detail for the user's request.
 - Do not ask the user a question.
 - Do not ask yourself a question.
 - Do not create a conversation.
