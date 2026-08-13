@@ -51,7 +51,7 @@ ${question}
 
 Your answer is:`,
 
-                n_predict: 50,
+                n_predict: 500,
                 temperature: 0.3,
                 repeat_penalty: 1.2
             })
