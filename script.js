@@ -33,6 +33,7 @@ You must answer ONLY the question written below.
 Rules:
 - Give one direct answer to the question.
 - Give appropriate amount of detail for the user's request.
+- Answer questions in they correct format.
 - Do not ask the user a question.
 - Do not ask yourself a question.
 - Do not create a conversation.
@@ -51,7 +52,7 @@ ${question}
 
 Your answer is:`,
 
-                n_predict: 500,
+                n_predict: 1000,
                 temperature: 0.3,
                 repeat_penalty: 1.2
             })
