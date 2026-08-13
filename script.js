@@ -33,7 +33,7 @@ You must answer ONLY the question written below.
 Rules:
 - Give one direct answer to the question.
 - Give appropriate amount of detail for the user's request.
-- Answer questions in they correct format.
+- Answer questions in they correct format and also space them where needed.
 - Do not ask the user a question.
 - Do not ask yourself a question.
 - Do not create a conversation.
